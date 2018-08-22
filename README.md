@@ -1,6 +1,6 @@
 ## 容器监控解决方案 Alertmanager Prometheus Grafana Exporter cAdvisor
 
-#1.邮箱和slack准备
+# 1.邮箱和slack准备
 ```
 slack: 配置方法
 1. 申请slack账号
@@ -13,7 +13,7 @@ QQ邮箱生成授权码
 
 ```
 
-#2.获取配置文件
+# 2.获取配置文件
 ```
 git clone XXX
 
@@ -26,7 +26,7 @@ prometheus.yml    不用修改
 
 ```
 
-#3.启动容器
+# 3.启动容器
 ```
 1.启动node-exporter
 docker run -d -p 9100:9100 \
@@ -109,7 +109,7 @@ grafana默认密码 admin admin
 
 ```
 
-## 4.docker-compose 方式
+# 4.docker-compose 方式
 ```
 
 启动容器
@@ -129,7 +129,7 @@ cb1158e0984d        google/cadvisor:latest      "/usr/bin/cadvisor..."   5 minut
 
 ```
 
-## 5.alertmanager报警测试方法
+# 5.alertmanager报警测试方法
 ```
 符合 user: jason 发送邮件给 email  XXX@foxmail.com
 符合 user: long  发送消息给 slack  channel: "#prometheus"
