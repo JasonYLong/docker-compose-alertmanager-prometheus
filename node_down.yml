@@ -1,0 +1,14 @@
+groups:
+- name: node_down
+  rules:
+  - alert: InstanceDown
+    expr: up == 0
+    for: 5m
+    labels:
+      user: jason
+    annotations:
+      summary: "Cadvisor Instance down"
+      description: "{{$labels.instance}}: down for more than 1 minutes."
+      link: "http://IP:9090/graph?g0.range_input=1h&g0.expr=up%20%3D%3D%200&g0.tab=1"
+      color: "#ff0000"
+      username: "@Jason"

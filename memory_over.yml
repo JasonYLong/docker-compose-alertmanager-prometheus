@@ -1,0 +1,14 @@
+groups:
+- name: memory_over
+  rules:
+  - alert: NodeMemoryUsage
+    expr: (node_memory_MemTotal_bytes - (node_memory_MemFree_bytes+node_memory_Buffers_bytes+node_memory_Cached_bytes )) / node_memory_MemTotal_bytes * 100 > 30
+    for: 5m
+    labels:
+      user: long
+    annotations:
+      summary: "High Memory usage detected"
+      description: "{{$labels.instance}}: Memory usage is above 30% (current value is:{{ $value }})"
+      link: "http://IP:9090/graph?g0.range_input=1h&g0.expr=(node_memory_MemTotal_bytes%20-%20(node_memory_MemFree_bytes%2Bnode_memory_Buffers_bytes%2Bnode_memory_Cached_bytes%20))%20%2F%20node_memory_MemTotal_bytes%20*%20100%20%3E%2030&g0.tab=1"
+      color: "#0000ff"
+      username: "@long"

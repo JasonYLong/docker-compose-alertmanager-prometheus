@@ -1,0 +1,37 @@
+global:
+   smtp_smarthost: 'smtp.qq.com:587'
+   smtp_from: 'XXX@qq.com'
+   smtp_auth_username: 'XXX@qq.com'
+   smtp_auth_password: 'XXXX'
+route:
+   group_wait: 30s
+   group_interval: 1m
+   repeat_interval: 1m
+   group_by: ['alertname']
+   receiver: default-email
+   routes:
+   - match: 
+       user: jason
+     receiver: email
+
+   - match:
+       user: long
+     receiver: slack    
+
+receivers:
+  - name: 'slack'
+    slack_configs:
+      - api_url: "https://hooks.slack.com/services/XXX"
+        channel: "#prometheus"
+        text: "{{ range .Alerts }} {{ .Annotations.description}}\n {{end}} {{ .CommonAnnotations.username}} <{{.CommonAnnotations.link}}| click here>"
+        title: "{{.CommonAnnotations.summary}}"
+        title_link: "{{.CommonAnnotations.link}}"
+        color: "{{.CommonAnnotations.color}}"
+
+  - name: 'email'
+    email_configs:
+    - to: 'XXX@foxmail.com'
+
+  - name: 'default-email'
+    email_configs:
+    - to: 'XXX@139.com'

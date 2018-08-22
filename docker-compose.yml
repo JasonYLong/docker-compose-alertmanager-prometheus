@@ -1,0 +1,79 @@
+version: '3'
+services: 
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./node_down.yml:/etc/prometheus/node_down.yml
+      - ./memory_over.yml:/etc/prometheus/memory_over.yml
+      - ./load_over.yml:/etc/prometheus/load_over.yml
+    ports:
+      - 9090:9090
+    links:
+      - cadvisor:cadvisor
+      - node-exporter:node-exporter    
+
+  alertmanager:
+    image: prom/alertmanager
+    container_name: alertmanager
+    restart: unless-stopped
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    cap_add:
+      - SYS_TIME
+    command: 
+      - '--path.procfs=/host/proc' 
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+    volumes:
+      - /proc:/host/proc
+      - /sys:/host/sys
+      - /:/rootfs
+    ports:
+      - 9100:9100
+
+  cadvisor:
+    image: google/cadvisor:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - 8080:8080
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    links:
+      - prometheus:prometheus
+    ports:
+      - 3000:3000
+
+# http://IP:3000  admin admin
+
+# Add datasource 
+# Name: prometheus
+# Type: Prometheus
+# HTTP URL: http://IP:9090
+# node-exporter http://IP:9100/metrics
+# cadvisor  http://IP:8080/metrics
+# alertmanager http://IP:9093/#/status
+# prometheus http://IP:9090/alerts
+# grafana http://IP:3000/
+
+# default other item
+# Save & Test
