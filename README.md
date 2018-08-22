@@ -160,7 +160,7 @@ user: jasonlong 对应 load_over.yml 满足OS load is over 0.8 发邮件给 defa
 
 如果有帮助到您，也想鼓励我的话，欢迎请我喝一杯咖啡😆
 
-![zhifubao](https://github.com/JasonYLong/docker-compose-alertmanager-prometheus/raw/master/images/zhifubao.jpg)
+<!-- ![zhifubao](https://github.com/JasonYLong/docker-compose-alertmanager-prometheus/raw/master/images/zhifubao.jpg) -->
 
 <img src="https://github.com/JasonYLong/docker-compose-alertmanager-prometheus/raw/master/images/zhifubao.jpg" width="100" height="100" />
 
