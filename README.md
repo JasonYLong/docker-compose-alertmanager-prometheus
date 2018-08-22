@@ -4,7 +4,7 @@
 ```
 slack: 配置方法
 1. 申请slack账号
-2. 创建channel
+2. 创建channel #prometheus
 3. 添加app incoming-webhook ,点击View--> Webhook URL [复制这里得link，后面有用]
 
 QQ邮箱生成授权码
