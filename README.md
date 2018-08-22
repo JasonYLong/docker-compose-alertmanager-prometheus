@@ -29,6 +29,11 @@ prometheus.yml    不用修改
 
 # 3.启动容器
 ```
+创建网络my_net2
+   # docker network create --driver bridge --subnet 172.22.17.0/24 --gateway 172.22.17.1 my_net2
+   # brctl show
+   # docker inspect my_net2
+   
 1.启动node-exporter
 docker run -d -p 9100:9100 \
   -v "/proc:/host/proc" \
