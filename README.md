@@ -15,7 +15,7 @@ QQ邮箱生成授权码
 
 # 2.获取配置文件
 ```
-git clone XXX
+git clone https://github.com/JasonYLong/docker-compose-alertmanager-prometheus.git
 
 修改如下配置文件
 alertmanager.yml  修改smtp_auth_password为QQ授权码，并修改其中的邮箱名
