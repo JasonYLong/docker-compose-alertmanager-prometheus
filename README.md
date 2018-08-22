@@ -148,6 +148,7 @@ user: jasonlong 对应 load_over.yml 满足OS load is over 0.8 发邮件给 defa
 
 ``` 
 
+--------------------------------------
 报警结果
 
 ![result](https://github.com/JasonYLong/docker-compose-alertmanager-prometheus/raw/master/images/result.jpg)
