@@ -18,7 +18,8 @@ QQ邮箱生成授权码
 git clone https://github.com/JasonYLong/docker-compose-alertmanager-prometheus.git
 
 修改如下配置文件
-alertmanager.yml  修改smtp_auth_password为QQ授权码，并修改其中的邮箱名
+alertmanager.yml  修改smtp_auth_password为QQ授权码，并修改其中的smtp_from smtp_auth_username邮箱名
+                  修改api_url 为slack webhook地址
 load_over.yml     修改link中IP  http://IP:9090/graph?g0.range_input=1h&g0.expr=node_load1%20%3E%200.8&g0.tab=1
 memory_over.yml   修改link中IP 
 node_down.yml     修改link中IP 
